@@ -5,6 +5,8 @@
 
 library(tidyverse)
 
+##REMEMBER control enter to get a line to do something
+
 interviews_plotting <- read_csv("data_output/interviews_plotting.csv")
 
 ggplot(data = interviews_plotting)
@@ -112,17 +114,54 @@ ggplot(data=interviews_plotting, aes(x=no_membrs, fill=village)) +
   geom_density(alpha=0.4)
 ##to change aesthetics
 
+##LOOKING AT CATEGORICAL DATA
 
+ggplot(data=interviews_plotting, 
+       aes(x=respondent_wall_type, fill=village)) + 
+  geom_bar()
+##without fill you will just get a plain bar chart, a count of all wall types regardless of village
 
+ggplot(data=interviews_plotting, 
+       aes(x=respondent_wall_type, fill=village)) + 
+  geom_bar(position="dodge")
+##to change from a standard stacked bar chart from previous step into bars next to each other, much better
+## unfortunately because there are no values for two of the villages with cement it looks stupid. maybe ensure you have zeros? don't knwo
 
+ggplot(data=interviews_plotting, 
+       aes(x=respondent_wall_type, fill=village)) + 
+  geom_bar(position="dodge") + facet_wrap(~respondent_wall_type)
+##seperates into seperate graphs see image saved '4graph'
 
+ggplot(data=interviews_plotting, 
+       aes(x=village, fill=village)) + 
+  geom_bar(position="dodge") + facet_wrap(~respondent_wall_type)
+##tochange the 4 graphs - change it to make it present better - see image '4grap2'
 
+ggplot(data=interviews_plotting, 
+       aes(x=village, fill=village)) + 
+  geom_bar(position="dodge") + facet_wrap(~respondent_wall_type) +
+  theme_classic()
+##removed grid lines
 
+ggplot(data=interviews_plotting, 
+       aes(x=respondent_wall_type, fill=village)) + 
+  geom_bar(position="fill")  + 
+  scale_fill_brewer(palette="RdBu") +ylab("proportion")
+##to show proportions also changed colours
 
+ggplot(data=interviews_plotting, 
+       aes(x=respondent_wall_type, fill=village)) + 
+  geom_bar(position="fill")  + 
+  scale_fill_brewer(palette="forestgreen") +ylab("proportion")+
+  stat_count(geom="text", aes(label=stat(count)), position=position_fill(vjust=0.5), color="black")
+##pretty green colour, with the numbers shown in each proportion. see image 'proportionbar'
 
-
-
-
+ggplot(data=interviews_plotting, 
+       aes(x=village, fill=respondent_wall_type)) + 
+  geom_bar(position="fill")  + 
+  scale_fill_brewer(palette="forestgreen") +ylab("proportion")+
+  stat_count(geom="text", aes(label=stat(count)), position=position_fill(vjust=0.5), color="black")
+##swapping axis
 
 
 
