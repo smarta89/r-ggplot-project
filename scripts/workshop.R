@@ -60,6 +60,18 @@ interviews_plot <-ggplot(data = interviews_plotting,
 ggsave("fig_output/membrs_itm.png", interviews_plot, width=15, height=10, dpi=72)
 ##to save the new plot over the old plot with specifics
 
+## new exercise number 6
+
+ggplot(data=interviews_plotting,
+       aes(x=rooms, y=village, color=respondent_wall_type)) +
+  geom_point(alpha=0.5) +
+  geom_jitter(alpha=0.5, width=0.2, height=0.2, size=4) +
+  geom_smooth(method="lm")
+## this is a stupid way to present this data, but I did what the exercise asked, good job
+
+
+
+
 
 
 
