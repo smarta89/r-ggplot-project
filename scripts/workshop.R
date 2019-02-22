@@ -202,14 +202,47 @@ ggplot(data=interviews_plotting, aes(fill=respondent_wall_type, x=village)) +
 ##ylab to change y axis label and same for xlab and x axis. ggtitle adds a title
 ## could also do: labs(x="Village", y="Proportion", title="Walltype by village") instead of seperate like above
 
+ggplot(data=interviews_plotting, aes(fill=respondent_wall_type, x=village)) +
+  geom_bar(position="fill")+
+  stat_count(geom="text", aes(label=stat(count)), position=position_fill(vjust=0.5), color="white") +
+  ylab("Proportion") + xlab("Village") +
+  ggtitle("Proportion of wall type by village") +
+  guides(fill=guide_legend(title="Wall type"))+
+           scale_fill_discrete(labels=c("burntbrick", "cement", "mud daub", "sun bricks"))
+##added how to change legend title and legened labels
 
+ggplot(data=interviews_plotting, aes(fill=memb_assoc, x=respondent_wall_type)) +
+  geom_bar(position="fill")+
+  stat_count(geom="text", aes(label=stat(count)), position=position_fill(vjust=0.5), color="white") +
+  scale_x_discrete(labels=c("burnt bricks", "cement", "mud daub", "sun bricks"))+
+  ylab("Proportion") + xlab("Wall type")  +
+  facet_wrap(~village, nrow=2)
+##looking at different and more variables, nrow is number of rows of graphs. Also labeling x axis sub categories
 
+ggplot(data=interviews_plotting, aes(fill=memb_assoc, x=respondent_wall_type)) +
+  geom_bar(position="fill")+
+  stat_count(geom="text", aes(label=stat(count)), position=position_fill(vjust=0.5), color="white") +
+  scale_x_discrete(labels=c("burnt bricks", "cement", "mud daub", "sun bricks"))+
+  ylab("Proportion") + xlab("Wall type")  +
+  facet_wrap(~village, nrow=2)+ theme_bw()+
+  ggtitle("Plot title")+
+  guides(fill=guide_legend(title="Member/nAssociation"))+
+  theme(axis.text.x=element_text(angle=45, hjust=1, size=12), plot.title=element_text(hjust=0.5))
+  
+##changing the x axis text angle, hjust makes it so the words dont go into the graph. theme_bw gets rid of the grey background, there are other themes
+## also centered title at top.
 
-
-
-
-
-
+ggplot(data=interviews_plotting, aes(fill=memb_assoc, x=respondent_wall_type)) +
+  geom_bar(position="fill")+
+  stat_count(geom="text", aes(label=stat(count)), position=position_fill(vjust=0.5), color="white") +
+  scale_x_discrete(labels=c("burnt bricks", "cement", "mud daub", "sun bricks"))+
+  scale_y_continuous(breaks=c(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1))+
+  ylab("Proportion") + xlab("Wall type")  +
+  facet_wrap(~village, nrow=2)+ theme_bw()+
+  ggtitle("Plot title")+
+  guides(fill=guide_legend(title="Member/nAssociation"))+
+  theme(axis.text.x=element_text(angle=45, hjust=1, size=12), plot.title=element_text(hjust=0.5))
+##added in how to change the scale on the y axis to what you want
 
 
 
