@@ -163,6 +163,53 @@ ggplot(data=interviews_plotting,
   stat_count(geom="text", aes(label=stat(count)), position=position_fill(vjust=0.5), color="black")
 ##swapping axis
 
+ggplot(data=interviews_plotting, aes(x=respondent_wall_type, y=rooms)) +
+  geom_boxplot(size=0.5) + geom_jitter(alpha=0.5, width=0.2, height=0.2, color="purple", size=2)
+## puts the data points on top of a box plot, remove jitter for plain box plots, the black dots are outliers - see image 'box'
+
+ggplot(data=interviews_plotting, aes(x=respondent_wall_type, y=rooms)) +
+  geom_boxplot(size=0.5, alpha=0) + geom_jitter(alpha=0.5, width=0.2, height=0.2,  size=2, aes(color=village))
+##if you put alpha=0 it will not show the outliers, also colour coding the dots to village
+
+ggplot(data=interviews_plotting, aes(x=respondent_wall_type, y=liv_count)) +
+  geom_boxplot(size=0.5, alpha=0) + geom_jitter(alpha=0.5, width=0.2, height=0.2,  size=2, aes(color=memb_assoc))
+## just looking at different variables
+
+ggplot(data=interviews_plotting, 
+       aes(x=respondent_wall_type, y=liv_count, fill=memb_assoc, 
+           color=memb_assoc)) +
+  geom_boxplot(alpha=0.5) + 
+  geom_point(alpha=0.5, 
+             position=position_jitterdodge(jitter.width=0.1, jitter.height=0.1))
+##puts the relevant jitter dots near the relevant boxplot
+
+##violin plots
+
+ggplot(data=interviews_plotting, 
+       aes(x=respondent_wall_type, y=rooms, color=village))+
+  geom_violin(alpha=0, size = 1)+
+  geom_jitter(alpha=0.5, width=0.2, height=0.2, aes(color=village))
+##remove color=village to turn them into 1 violin plot per wall type
+
+##more plot customisation
+
+ggplot(data=interviews_plotting, aes(fill=respondent_wall_type, x=village)) +
+  geom_bar(position="fill")+
+  stat_count(geom="text", aes(label=stat(count)), position=position_fill(vjust=0.5), color="white") +
+  ylab("Proportion") + xlab("Village") +
+  ggtitle("Proportion of wall type by village")
+
+##ylab to change y axis label and same for xlab and x axis. ggtitle adds a title
+## could also do: labs(x="Village", y="Proportion", title="Walltype by village") instead of seperate like above
+
+
+
+
+
+
+
+
+
 
 
 
