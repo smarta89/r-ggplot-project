@@ -78,6 +78,46 @@ exercise_6_plot <- ggplot(data=interviews_plotting,
 ggsave("fig_output/rooms_village.png", exercise_6_plot, width = 15, height=10, dpi=72)
 ## saved good
 
+ggplot(data=interviews_plotting,
+       aes(x=village, y=rooms, color=respondent_wall_type)) +
+  geom_jitter(alpha=0.5, width=0.2, height=0.2, size=4)
+##swapped axis
+
+ggplot(data=interviews_plotting, aes(x=no_membrs)) +
+  geom_histogram(binwidth=1)
+## to plot histogram
+##changed binwidth because there cannot be half people so made it 1
+
+ggplot(data=interviews_plotting, aes(x=no_membrs)) +
+  geom_histogram(binwidth=1, color="white")
+##outlines the bars to show individual bars better
+
+ggplot(data=interviews_plotting, aes(x=no_membrs, fill=village)) +
+  geom_histogram(binwidth=1, color="white")
+##adding colours for each village, still hard to read though, maybe histogram not the best choice
+
+ggplot(data=interviews_plotting, aes(x=no_membrs, color=village)) +
+  geom_freqpoly(binwidth=1)
+## to plot it as lines, better visual but still not the best, maybe plot a particular y axis
+
+ggplot(data=interviews_plotting, aes(x=no_membrs, y=stat(density), color=village)) +
+  geom_freqpoly(binwidth=1)
+##now everything has been scaled to the amount of data we have
+
+ggplot(data=interviews_plotting, aes(x=no_membrs, color=village)) +
+  geom_density()
+##smooths it out to a curve, not the best for this particular data but good to know
+
+ggplot(data=interviews_plotting, aes(x=no_membrs, fill=village)) +
+  geom_density(alpha=0.4)
+##to change aesthetics
+
+
+
+
+
+
+
 
 
 
