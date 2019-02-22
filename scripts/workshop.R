@@ -34,3 +34,17 @@ ggplot(data = interviews_plotting,
   geom_jitter(alpha = 0.5)
 ##instead of each point being exactally on the point it is slightly off point so we can see all the points and where they lie
 
+ggplot(data = interviews_plotting, 
+       aes (x = no_membrs, y = number_items)) +
+  geom_jitter(alpha = 0.5, width =0.15, height = 0.15)
+## to tell it how much you want it to jitter by. in this case it will move each point up to 0.15 units away from the original place
+
+interviews_plot <- ggplot(data = interviews_plotting, 
+                          aes (x = no_membrs, y = number_items)) +
+  geom_jitter(alpha = 0.5, width =0.15, height = 0.15)
+##to save this line of data as interviews_plot
+
+ggsave ("fig_output/membrs_item.png, interviews_plot, width = 15, height = 10, dpi = 72)
+## to save 
+
+
