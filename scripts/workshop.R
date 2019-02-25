@@ -244,5 +244,11 @@ ggplot(data=interviews_plotting, aes(fill=memb_assoc, x=respondent_wall_type)) +
   theme(axis.text.x=element_text(angle=45, hjust=1, size=12), plot.title=element_text(hjust=0.5))
 ##added in how to change the scale on the y axis to what you want
 
+##exercise 16
 
+ggplot(data=interviews_plotting, (aes(x=items_owned, y=no_membrs, color=village)))+
+         geom_point()+
+  geom_count()+
+  geom_point(alpha=0.5) +
+  theme_bw()
 
